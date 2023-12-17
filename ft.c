@@ -11,9 +11,9 @@ void open_file_1(char *file_name)
 	FILE *fd_2 = fopen(file_name, "r");
 
 	if (file_name == NULL || fd_2 == NULL)
-		err(2, file_name);
+		err_er(2, file_name);
 
-	read_file(fd_2);
+	read_file_n(fd_2);
 	fclose(fd_2);
 }
 
@@ -54,7 +54,7 @@ int parse_line_2(char *buffer, int line_number, int format)
 	const char *delim_2 = "\n ";
 
 	if (buffer == NULL)
-		err(4);
+		err_er(4);
 
 	opcode = strtok(buffer, delim_2);
 	if (opcode == NULL)
@@ -115,7 +115,7 @@ void find_func_m(char *opcode, char *value, int ln, int format)
 		}
 	}
 	if (flag_me == 1)
-		err(3, ln, opcode);
+		err_er(3, ln, opcode);
 }
 
 
@@ -143,7 +143,7 @@ void call_fun(op_func func, char *op, char *val, int ln, int format)
 			flag_me = -1;
 		}
 		if (val == NULL)
-			err(5, ln);
+			err_er(5, ln);
 		for (j = 0; val[j] != '\0'; j++)
 		{
 			if (isdigit(val[j]) == 0)
